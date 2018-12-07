@@ -1,0 +1,18 @@
+@startuml
+participant Browser
+participant View
+participant Controller
+participant Model
+participant DBMS
+
+Browser -> Controller: GET pages/product-{id}
+Controller -> Controller: checks id is here and an int\n(may be bypassed thanks to the RewriteRule)
+Controller -> Model: (model/product_model.php)\n get($id)
+Model -> DBMS: SELECT * FROM product JOIN category ... JOIN member ...\n WHERE product_id=...
+Model -> Controller: 1 row as associative array\n or null if not found
+Controller -> Model: (model/product_model.php)\n getBidsByProductId($id)
+Model -> DBMS: SELECT * FROM bid JOIN member ...\n WHERE product_id=...
+Model -> Controller: array of rows
+Controller -> View: (view/product_vue.php)
+View -> Browser: whole page
+@enduml

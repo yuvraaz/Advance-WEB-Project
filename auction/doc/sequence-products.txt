@@ -1,0 +1,14 @@
+@startuml
+participant Browser
+participant View
+participant Controller
+participant Model
+participant DBMS
+
+Browser -> Controller: GET products\n with category_id, current_price, deadline, page
+Controller -> Model: Product::getByFilter($category_id,\n$max_current_price, $deadline, $pageIndex)
+Model -> DBMS: SELECT ... \nFROM product JOIN category ... JOIN bid ...\n(for the current_price)
+Controller -> Controller: sets $products, $errors
+Controller -> View: products_view.php
+View -> Browser: List of products\nwith links for all of them
+@enduml

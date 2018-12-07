@@ -1,0 +1,28 @@
+td, th {
+   padding: 4px;
+}
+tr:nth-child(even) {
+   background: #EEEEEE;
+}
+tr:nth-child(odd) {
+   background: #DDDDDD;
+}
+h1 {
+   color: navy;
+}
+h2 {
+   color: purple;
+}
+h3 {
+   color: darkviolet;
+}
+.error {
+   color: red;
+}
+#loginForm {
+   display: inline-block;
+   float: right;
+}
+nav {
+   
+}

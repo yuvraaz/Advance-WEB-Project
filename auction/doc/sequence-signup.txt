@@ -1,0 +1,39 @@
+@startuml
+' Order and type of components
+participant Browser
+participant View
+participant Controller
+participant Model
+database DBMS
+participant "SMTP\nserver" as SMTP_server 
+' \n pour aller � la ligne
+
+' Font and image size
+skinparam sequenceArrowFontSize 18
+skinparam sequenceParticipantFontSize 18
+skinparam sequenceActorFontSize 18
+scale 750 width
+
+' Sequence
+Browser -> Controller : GET signup
+Controller -> View : signup_form.php
+View -> Browser : signup form
+Browser -> Controller : POST signup
+Controller -> Controller : Generate a random token
+Controller -> Model : Member::insert(..., token, ...)
+Model -> DBMS : INSERT INTO member(...)
+Controller -> SMTP_server : send mail with a form\nto confirmSignup with token=theToken
+Controller -> View : signupOk.php
+View -> Browser : "An email has been sent to you.\nPlease click on the link to confirm your inscription"
+
+' Separation
+== Confirmation ==
+Browser -> Controller : POST confirmSignup\nwith token=theToken
+note right
+	sometimes, GET instead of POST
+	to have a link in the email
+end note
+Controller -> Model : Member::confirm(theToken)
+Controller -> View : signupConfirmed.php
+View -> Browser : "Your inscription is confirmed"
+@enduml
