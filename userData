@@ -1,0 +1,30 @@
+-- --------------------------------------------------------------------------------
+-- Routine DDL
+-- Note: comments before and after the routine body will not be stored by the server
+-- --------------------------------------------------------------------------------
+DELIMITER $$
+
+CREATE PROCEDURE `new_procedure` ()
+
+
+BEGIN
+
+	SET FOREIGN_key_CHECKS = 0;
+    TRUNCATE TABLE user;
+    TRUNCATE TABLE theme;
+    TRUNCATE TABLE quiz_db;
+    SET FOREIGN_KEY_CHECKS = 1;
+
+-- User Table
+  insert into sql_skills_2018_11.user (user_id, email, pwd, name, first_name, token, created_at, validated_at, is_trainer) values 
+(0001,'raza@gmail.com','raza@123','raza','ammad','token_raza_am', '2018-11-23 15:21:54', CURRENT_TIMESTAMP(), false),
+(0002, 'Nilash@gmail.com','Nilash@123','Nilash','Kurapati','token_Nilash_Kurapati', '2018-11-23 15:25:54', CURRENT_TIMESTAMP(), false),
+(0003, 'yubaraj@gmail.com','yubaraj@123','yubaraj','yubaraj','token_yubaraj_raj', '2018-11-22 15:25:54', CURRENT_TIMESTAMP(), true),
+(0004, 'ablesone_erik@gmail.com','abbas@123','Ableson','Erik','token_able_12540', '2018-11-21 10:00:54', CURRENT_TIMESTAMP(), true);
+      
+-- Theme Table
+  insert into theme (theme_id, label) values 
+  (1, 'Simple queries'),
+  (2, 'Joins');
+
+END
