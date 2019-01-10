@@ -6,7 +6,7 @@ Options +Indexes
 # Use url rewriting. BE SURE YOU ENABLE rewrite_module in Apache 
 RewriteEngine on
 # Base directory for rewritng: URL OF YOUR POROJECT
-RewriteBase /epita/auction/pages/
+RewriteBase /auction/pages/
 # Rewriting rules (use regular expressions)
 RewriteRule ^sign_in$ login.php
 RewriteRule ^sign_out$ login.php?action=disconnect
